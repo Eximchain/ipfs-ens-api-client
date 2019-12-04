@@ -30,3 +30,5 @@ export class API {
     return this.hasAuth();
   }
 }
+
+export default API;
