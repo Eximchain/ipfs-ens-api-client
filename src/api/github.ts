@@ -9,12 +9,7 @@ export class GitApi {
   constructor({ reqFactory, apiUrl, oauthToken }:ApiModuleConf) {
     this.octokit = oauthToken ? new Octokit({ auth : oauthToken}) : new Octokit();
     if (oauthToken) this.oauthToken = oauthToken;
-    this.login = reqFactory.fixedPath<Login.Args, Login.Response>(Login.Path, Login.HTTP)
-    this.loginUrl = reqFactory.fixedPath<LoginUrl.Args, LoginUrl.Response>(LoginUrl.Path, LoginUrl.HTTP)
   }
-
-  loginUrl:FixedPathFactory<LoginUrl.Args, LoginUrl.Response>
-  login:FixedPathFactory<Login.Args, Login.Response>
 
   private octokit:Octokit
   public oauthToken?:string
