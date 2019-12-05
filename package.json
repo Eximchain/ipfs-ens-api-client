@@ -27,7 +27,7 @@
   "homepage": "https://github.com/Eximchain/ipfs-ens-api-client#readme",
   "dependencies": {
     "@eximchain/api-types": "^1.0.4",
-    "@eximchain/ipfs-ens-types": "file:../ipfs-ens-types",
+    "@eximchain/ipfs-ens-types": "^1.1.2",
     "@octokit/rest": "^16.35.0",
     "@types/lodash.range": "^3.2.6",
     "@types/parse-link-header": "^1.0.0",
