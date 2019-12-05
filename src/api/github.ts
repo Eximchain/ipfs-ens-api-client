@@ -1,6 +1,6 @@
 import Octokit from '@octokit/rest';
 import { GitTypes } from '@eximchain/ipfs-ens-types/spec/deployment';
-import { Login } from '@eximchain/ipfs-ens-types/spec/methods/auth';
+import { Login, LoginUrl } from '@eximchain/ipfs-ens-types/spec/methods/auth';
 import range from 'lodash.range';
 import parseLinkHeader from 'parse-link-header';
 import { ApiModuleConf, FixedPathFactory } from "../types";
@@ -10,12 +10,14 @@ export class GitApi {
     this.octokit = oauthToken ? new Octokit({ auth : oauthToken}) : new Octokit();
     if (oauthToken) this.oauthToken = oauthToken;
     this.login = reqFactory.fixedPath<Login.Args, Login.Response>(Login.Path, Login.HTTP)
+    this.loginUrl = reqFactory.fixedPath<LoginUrl.Args, LoginUrl.Response>(LoginUrl.Path, LoginUrl.HTTP)
   }
 
+  loginUrl:FixedPathFactory<LoginUrl.Args, LoginUrl.Response>
   login:FixedPathFactory<Login.Args, Login.Response>
 
-  private oauthToken?:string
   private octokit:Octokit
+  public oauthToken?:string
 
   private requireAuth() {
     if (!this.oauthToken) throw new Error('You must be logged in to call this method.')

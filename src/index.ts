@@ -25,10 +25,6 @@ export class API {
   hasAuth():boolean {
     return !!this.oauthToken;
   }
-
-  hasActiveAuth():boolean {
-    return this.hasAuth();
-  }
 }
 
 export default API;

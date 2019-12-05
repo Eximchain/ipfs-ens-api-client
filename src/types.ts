@@ -4,7 +4,7 @@ import { ReqFactory } from './reqFactory';
 
 export interface ApiConf {
   apiUrl: string
-  oauthToken?:string
+  oauthToken:string|null
 }
 
 export interface ApiModuleConf extends ApiConf {
