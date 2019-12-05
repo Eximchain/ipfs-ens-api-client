@@ -1,4 +1,3 @@
-import {} from '@eximchain/ipfs-ens-types/spec/deployment';
 import { ReqFactory } from './reqFactory';
 import { GitApi, DeploysAPI } from './api';
 import { ApiConf, ApiModuleConf } from './types';
