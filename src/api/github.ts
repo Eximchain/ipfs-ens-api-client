@@ -38,13 +38,10 @@ export class GitApi {
     if (!headers.link) return data;
     const allElts = [...data];
     const link = parseLinkHeader(headers.link) as parseLinkHeader.Links;
-    console.log("Got a link, attempting to fetch following pages: ", this.getMissingPageRange(link));
     for (var page of this.getMissingPageRange(link)) {
-      console.log(`Fetching page ${page}`)
       const res = await this.octokit.repos.list({ page });
       allElts.push(...res.data);
     }
-    console.log('')
     return allElts;
   }
 
