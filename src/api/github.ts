@@ -63,14 +63,10 @@ export class GitApi {
     const res = await this.octokit.repos.getContents({ owner, repo, path });
     const contents = res.data;
     if (Array.isArray(contents)) {
-      return contents;
+      throw new Error('This function is meant to retrieve a single file; it fails when provided a directory path.')
     } else {
-      const fileStr = contents.content as string;
-      const fileBuff = Buffer.from(fileStr, 'base64').toString('utf-8');
-      console.log('fileBuff in utf-8: ',fileBuff);
-      console.log('fileBuff in ASCII: ',Buffer.from(fileStr, 'base64').toString());
-      return fileBuff;
+      // Decode the base64 content string
+      return Buffer.from(contents.content as string, 'base64').toString();
     }
-    return contents;
   }
 }
