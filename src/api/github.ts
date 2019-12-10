@@ -64,6 +64,7 @@ export class GitApi {
     const res = await this.octokit.repos.getContents(args);
     const contents = res.data;
     if (Array.isArray(contents)) {
+      console.log('full contents: ',JSON.stringify(contents))
       throw new Error('This function is meant to retrieve a single file; it fails when provided a directory path.')
     } else {
       // Decode the base64 content string
