@@ -65,7 +65,9 @@ export class GitApi {
     const contents = res.data;
     if (Array.isArray(contents)) {
       console.log('full contents: ',JSON.stringify(contents))
+      return contents;
       throw new Error('This function is meant to retrieve a single file; it fails when provided a directory path.')
+
     } else {
       // Decode the base64 content string
       return Buffer.from(contents.content as string, 'base64').toString();
