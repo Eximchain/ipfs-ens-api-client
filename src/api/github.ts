@@ -62,6 +62,12 @@ export class GitApi {
     this.requireAuth();
     const res = await this.octokit.repos.getContents({ owner, repo, path });
     const contents = res.data;
+    if (Array.isArray(contents)) {
+      return contents;
+    } else {
+      const fileStr = contents.content
+      return atob(fileStr as string);
+    }
     return contents;
   }
 }
