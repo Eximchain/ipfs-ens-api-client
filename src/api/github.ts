@@ -62,12 +62,6 @@ export class GitApi {
     this.requireAuth();
     const res = await this.octokit.repos.getContents({ owner, repo, path });
     const contents = res.data;
-    if (Array.isArray(contents)) {
-      // Adding this error also makes Typescript correctly describe the type
-      // we expect, rather than the union of the file response and directory response.
-      throw new Error('This function is designed to fetch only one file; ensure the path provided is not a directory.')
-    } else {
-      return contents;
-    }
+    return contents;
   }
 }
