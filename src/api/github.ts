@@ -58,9 +58,10 @@ export class GitApi {
     return allElts;
   }
 
-  async getFile(owner:string, repo:string, path:string) {
+  async getFile(owner:string, repo:string, path:string, branch:string='master') {
     this.requireAuth();
-    const res = await this.octokit.repos.getContents({ owner, repo, path });
+    const args:Octokit.ReposGetContentsParams = { owner, repo, path, ref:branch };
+    const res = await this.octokit.repos.getContents(args);
     const contents = res.data;
     if (Array.isArray(contents)) {
       throw new Error('This function is meant to retrieve a single file; it fails when provided a directory path.')
