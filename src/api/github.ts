@@ -65,8 +65,9 @@ export class GitApi {
     if (Array.isArray(contents)) {
       return contents;
     } else {
-      const fileStr = contents.content
-      return atob(fileStr as string);
+      const fileStr = contents.content as string;
+      const fileBuff = Buffer.from(fileStr, 'base64').toString('utf-8');
+      return fileBuff;
     }
     return contents;
   }
