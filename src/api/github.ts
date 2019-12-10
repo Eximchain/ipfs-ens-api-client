@@ -67,6 +67,8 @@ export class GitApi {
     } else {
       const fileStr = contents.content as string;
       const fileBuff = Buffer.from(fileStr, 'base64').toString('utf-8');
+      console.log('fileBuff in utf-8: ',fileBuff);
+      console.log('fileBuff in ASCII: ',Buffer.from(fileStr, 'base64').toString());
       return fileBuff;
     }
     return contents;
